@@ -1,0 +1,38 @@
+#!/bin/sh
+
+awk '
+
+/{{  *..*\.hml ..*  *}}/{
+while (("ls /$3" | getline line) > 0) {
+    while(( getline line2 < line) > 0 ) {
+        print "\t",line2
+    };
+    close(line);
+};
+}
+
+/{{  *..*\.html ..*\.txt  *}}/{
+	while((getline line < $3) > 0 ){
+		while((getline line2 < line) > 0 ){print "\t",line2};
+		close(line);
+    };
+	close($3);
+    next;
+}
+
+/{{  *..*\.html [0-9][0-9]*  *}}/{
+    for (i=0; i<$3; i++) {
+        while((getline line < $2) > 0 ){print "\t",line};
+        close($2);
+    };
+    next;
+}
+
+/{{  *..*\.html  *}}/{
+	while((getline line < $2) > 0 ){print "\t",line};
+	close($2);
+	next;
+}
+
+
+{print $0}' $1

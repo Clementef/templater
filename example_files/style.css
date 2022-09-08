@@ -1,0 +1,185 @@
+   
+ :root {
+  --bg: #282a36;
+  --outline: #bd93f9;
+  --link: #747999;
+  --title: #99a2bf;
+}
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+}
+
+article {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15pt;
+}
+
+.pagecontents {
+    margin-top: 2.5em;
+    flex-grow:1;
+}
+
+a {
+  text-align: center;
+  text-decoration: none;
+  /*border-bottom: 1px solid var(--white);*/
+  color: var(--link);
+  white-space: nowrap;
+  margin: 3px;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--title);
+}
+
+.footer {
+    margin-top: auto;
+    flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg);
+  z-index: 100;
+  align-items: center;
+  outline: var(--outline) 2px solid;
+}
+
+.fcartimg {
+  max-width: 30%;
+  max-height: 15em;
+  flex-basis: fit-content;
+}
+
+.fcontainer {
+  display: flex;
+  /*background-color: blue;*/
+}
+
+.fcenter {
+  justify-content: center;
+}
+
+.falign {
+  align-items: center;
+}
+
+.fcolumn {
+  flex-direction: column;
+  /*background-color: red;*/
+}
+
+.frow {
+  flex-direction: row;
+  /*background-color: green;*/
+}
+
+.fwrap {
+  flex-wrap: wrap;
+}
+
+.fnowrap {
+  flex-wrap: nowrap;
+}
+
+.fgrow {
+  flex-grow: 1;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg);
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  outline: var(--outline) 2px solid;
+}
+
+.fspace {
+  justify-content: space-between;
+}
+
+.card {
+  width: 90%;
+  max-width: 30em;
+  padding-top: 1em !important;
+  padding-bottom: 1em !important; 
+  /* card padding overwrites other padding classes */
+}
+
+.cardcontents {
+  width: 90%;
+}
+
+.outline {
+  outline: var(--outline) solid 2px;
+}
+
+.textcenter {
+  text-align: center;
+}
+
+.title {
+  color: var(--title);
+  font-size: 30px;
+}
+
+.textcenter {
+  text-align: center;
+}
+
+.text {
+  color: var(--title);
+}
+
+.padright {
+  padding-right: 10px;
+}
+
+.inlinelink {
+  display: inline-block;
+}
+
+.linkpad {
+  padding: 0px;
+  margin: 0px;
+  margin-right: -4px;
+}
+
+.floating {
+  margin: 10px;
+  padding: 10px;
+}
+
+.padding {
+  padding: 10px;
+}
+
+.margin {
+    margin: 10px;
+}
+
+.padding2 {
+    padding: 20px;
+}
+
+.margin2 {
+    margin: 20px;
+}

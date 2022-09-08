@@ -1,0 +1,14 @@
+#!/bin/sh
+
+source=$1
+target=$2
+
+cp "$source" "$target"
+
+while (grep -q "{{  *..*  *}}" $target); do
+    templater_pass $target > temp
+    cat temp > $target
+done
+
+rm temp
+cat $target
