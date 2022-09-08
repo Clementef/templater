@@ -2,7 +2,7 @@
 
 awk '
 
-/{{  *..*\.html [0-9][0-9]*  *}}/{
+/{{\s*..*\.html\s*[0-9][0-9]*\s*}}/{
     for (i=0; i<$3; i++) {
         while((getline line < $2) > 0 ){print "\t",line};
         close($2);
@@ -10,7 +10,7 @@ awk '
     next;
 }
 
-/{{  *..*\.html  *}}/{
+/{{\s*..*\.html\s*}}/{
 	while((getline line < $2) > 0 ){print "\t",line};
 	close($2);
 	next;
