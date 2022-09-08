@@ -5,7 +5,7 @@ target=$2
 
 cp "$source" "$target"
 
-while (grep -q "{{  *..*  *}}" $target); do
+while (grep -q "{{\s*..*\s*}}" $target); do
     templater_pass $target > temp
     cat temp > $target
 done
