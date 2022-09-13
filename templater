@@ -1,7 +1,14 @@
 #!/bin/sh
 
 source=$1
+if [ -z "$1" ]; then
+    source="base.html"
+fi
+
 target=$2
+if [ -z "$1" ]; then
+    target="out.html"
+fi
 
 cp "$source" "$target"
 
