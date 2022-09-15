@@ -68,5 +68,6 @@ done
 #cleanup
 rm __temp
 rm __temp2
+rm __temp3
 cat "$outp"
 echo "templater done"
