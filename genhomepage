@@ -1,0 +1,72 @@
+#!/bin/sh
+
+#read arg and parse file
+conf=$3
+if [ -z $3 ]; then
+    conf="config.yml"
+fi
+parse_yaml "$conf" > __temp
+
+#read vars
+while read line; do
+    eval "$line";
+done < __temp
+
+#cleanup
+rm __temp
+
+echo "done reading vars"
+
+#read input file
+inp=$1
+if [ -z $1 ]; then
+    inp="base.html"
+fi
+
+#read output file
+outp=$2
+if [ -z $2 ]; then
+    outp="out.html"
+fi
+
+#create output file
+cp "$inp" "$outp"
+echo "output file initialized"
+
+passes=0
+while (grep -q "{{\s*..*\s*}}" $outp); do
+    echo "pass $passes"
+    while read line; do
+        case "$line" in
+
+            #html file
+            *{{*.html*}}*) echo "$line" | grep -o "{{..*}}" |
+                     sed "s/{{//" | sed "s/}}//" |
+                     awk '{$1=$1;print}' | sed "s/^/cat /" > __temp2;
+                while read line; do
+                    eval "$line";
+                done < __temp2;;
+
+            #variable
+            *{{*}}*) echo "$line" | grep -o "{{..*}}" |
+                     sed "s/{{//" | sed "s/}}//" |
+                     awk '{$1=$1;print}' | sed "s/^/echo $/" > __temp2;
+                while read line2; do
+                    eval "$line2";
+                done < __temp2 > __temp3;
+                read varval < __temp3;
+                echo "$line" | sed "s/{{..*}}/$varval/" ;; 
+            #regular line
+            *) echo "$line"
+        esac
+
+    done < "$outp" > __temp
+    cat __temp > "$outp"
+    passes="$passes"+1
+done
+
+#cleanup
+rm __temp
+rm __temp2
+cat "$outp"
+echo "templater done"

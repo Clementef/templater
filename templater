@@ -1,14 +1,33 @@
 #!/bin/sh
 
+#read args
 source=$1
+if [ -z "$1" ]; then
+    source="base.html"
+fi
 target=$2
+if [ -z "$2" ]; then
+    target="out.html"
+fi
+conf=$3
+if [ -z "$3" ]; then
+    conf="config.yml"
+fi
 
+#create target file
 cp "$source" "$target"
 
+#parse user config
+parse_yaml "$conf" > __parsed_yaml
+
+#while there is still compatible syntax,
+#do a templater pass
 while (grep -q "{{\s*..*\s*}}" $target); do
-    templater_pass $target > temp
-    cat temp > $target
+    ./templater_pass $target > __temp
+    cat __temp > $target
 done
 
-rm temp
+#cleanup and cat
+rm __temp
+rm __parsed_yaml
 cat $target

@@ -1,0 +1,27 @@
+##colors
+style:
+ background: "#bg"
+ outline: "#outline"
+ title: "#title"
+ link: "#link"
+
+##first widget
+widget1:
+  link: "url"
+  link: "url"
+  link: "url"
+  link: "url"
+
+##second widget
+widget2:
+  link: "url"
+  link: "url"
+  link: "url"
+  link: "url"
+
+##third widget
+widget3:
+  link: "url"
+  link: "url"
+  link: "url"
+  link: "url"
